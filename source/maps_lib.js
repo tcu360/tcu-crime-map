@@ -21,24 +21,24 @@ var MapsLib = {
 
   //the encrypted Table ID of your Fusion Table (found under File => About)
   //NOTE: numeric IDs will be depricated soon
-  fusionTableId:      "1m4Ez9xyTGfY2CU6O-UgEcPzlS0rnzLU93e4Faa0",
+  fusionTableId:      "15Blyfz9cTEZqXV77azB_gs17GRoO3cOJgWK_2Hw",
 
   //*New Fusion Tables Requirement* API key. found at https://code.google.com/apis/console/
   //*Important* this key is for demonstration purposes. please register your own.
-  googleApiKey:       "AIzaSyA3FQFrNr5W2OEVmuENqhb2MBB2JabdaOY",
+  googleApiKey:       "AIzaSyALDxMa8XW12em3WSqfZhpgRpYEdr8lXTs",
 
   //name of the location column in your Fusion Table.
   //NOTE: if your location column name has spaces in it, surround it with single quotes
   //example: locationColumn:     "'my location'",
-  locationColumn:     "geometry",
+  locationColumn:     "Latitude",
 
-  map_centroid:       new google.maps.LatLng(41.8781136, -87.66677856445312), //center that your map defaults to
-  locationScope:      "chicago",      //geographical area appended to all address searches
-  recordName:         "result",       //for showing number of results
-  recordNamePlural:   "results",
+  map_centroid:       new google.maps.LatLng(32.708, -97.363029), //center that your map defaults to
+  locationScope:      "fort worth",      //geographical area appended to all address searches
+  recordName:         "crime",       //for showing number of results
+  recordNamePlural:   "crimes",
 
   searchRadius:       805,            //in meters ~ 1/2 mile
-  defaultZoom:        11,             //zoom level when map is loaded (bigger is more zoomed in)
+  defaultZoom:        15,             //zoom level when map is loaded (bigger is more zoomed in)
   addrMarkerImage: 'http://derekeder.com/images/icons/blue-pushpin.png',
   currentPinpoint: null,
 
@@ -73,6 +73,16 @@ var MapsLib = {
     $("#result_count").hide();
     
     //-----custom initializers-------
+
+    //ranges for our slider
+    var minDate = moment("May 15 2012"); // Jan 1st 2010
+    var maxDate = moment(); //now
+
+    //starting values
+    var startDate = moment().subtract('months', 1); //past 3 months
+    var endDate = moment(); //now
+
+    MapsLib.initializeDateSlider(minDate, maxDate, startDate, endDate, "days", 7);
     
     //-----end of custom initializers-------
 
@@ -88,6 +98,9 @@ var MapsLib = {
     var whereClause = MapsLib.locationColumn + " not equal to ''";
 
     //-----custom filters-------
+
+    whereClause += " AND 'Date Reported' >= '" + $('#startDate').html() + "'";
+    whereClause += " AND 'Date Reported' <= '" + $('#endDate').html() + "'";
 
     //-------end of custom filters--------
 
@@ -263,11 +276,52 @@ var MapsLib = {
   convertToPlainString: function(text) {
     if (text == undefined) return '';
   	return decodeURIComponent(text);
-  }
+  },
   
   //-----custom functions-------
   // NOTE: if you add custom functions, make sure to append each one with a comma, except for the last one.
   // This also applies to the convertToPlainString function above
   
+  initializeDateSlider: function(minDate, maxDate, startDate, endDate, stepType, step) {
+    var interval = MapsLib.sliderInterval(stepType);
+
+    $('#minDate').html(minDate.format('MMM YYYY'));
+    $('#maxDate').html(maxDate.format('MMM YYYY'));
+    
+    $('#startDate').html(startDate.format('L'));
+    $('#endDate').html(endDate.format('L'));
+    
+    $('#date-range').slider({
+      range: true,
+      step: step,
+      values: [ Math.floor((startDate.valueOf() - minDate.valueOf()) / interval), Math.floor((maxDate.valueOf() - minDate.valueOf()) / interval) ],
+        max: Math.floor((maxDate.valueOf() - minDate.valueOf()) / interval),
+        slide: function(event, ui) {
+            $('#startDate').html(minDate.clone().add(stepType, ui.values[0]).format('L'));
+            $('#endDate').html(minDate.clone().add(stepType, ui.values[1]).format('L'));
+        },
+        stop: function(event, ui) {
+          MapsLib.doSearch();
+        }
+    });
+  },
+
+  sliderInterval: function(interval) {
+    if (interval == "years")
+      return 365 * 24 * 3600 * 1000;
+    if (interval == "quarters")
+      return 3 * 30.4 * 24 * 3600 * 1000;
+    if (interval == "months") //this is very hacky. months have different day counts, so our point interval is the average - 30.4
+      return 30.4 * 24 * 3600 * 1000;
+    if (interval == "weeks")
+      return 7 * 24 * 3600 * 1000;
+    if (interval == "days")
+      return 24 * 3600 * 1000;
+    if (interval == "hours")
+      return 3600 * 1000;
+    else
+      return 1;
+  }
+
   //-----end of custom functions-------
 }
