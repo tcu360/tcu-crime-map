@@ -53,6 +53,16 @@ var MapsLib = {
     };
     map = new google.maps.Map($("#map_canvas")[0],myOptions);
 
+    // create new spiderfier instance
+    var oms = new OverlappingMarkerSpiderfier(map);
+
+    // spiderfier event listener
+    var iw = new google.maps.InfoWindow();
+    oms.addListener('click', function(marker, event) {
+      iw.setContent(marker.desc);
+      iw.open(map, marker);
+    });
+
     // maintains map centerpoint for responsive design
     google.maps.event.addDomListener(map, 'idle', function() {
         MapsLib.calculateCenter();
@@ -124,6 +134,9 @@ var MapsLib = {
             animation: google.maps.Animation.DROP,
             title:address
           });
+
+          // let spiderfier know about each new map point
+          oms.addMarker(MapsLib.addrMarker);
 
           whereClause += " AND ST_INTERSECTS(" + MapsLib.locationColumn + ", CIRCLE(LATLNG" + MapsLib.currentPinpoint.toString() + "," + MapsLib.searchRadius + "))";
 
