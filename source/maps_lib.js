@@ -42,6 +42,9 @@ var MapsLib = {
   addrMarkerImage: 'http://derekeder.com/images/icons/blue-pushpin.png',
   currentPinpoint: null,
 
+  // array to hold map markers
+  markers: [],
+
   initialize: function() {
     $( "#result_count" ).html("");
 
@@ -158,7 +161,9 @@ var MapsLib = {
 
   clearSearch: function() {
     if (MapsLib.searchrecords != null)
-      MapsLib.searchrecords.setMap(null);
+      for (i in MapsLib.markers) {
+        MapsLib.markers[i].setMap(null);
+      }
     if (MapsLib.addrMarker != null)
       MapsLib.addrMarker.setMap(null);
     if (MapsLib.searchRadiusCircle != null)
@@ -223,8 +228,9 @@ var MapsLib = {
       dataType: 'jsonp',
       success: function (data) {
         if(data.rows) {
-          MapsLib.drawMarkers(data.rows);
-          MapsLib.displaySearchCount(data.rows.length);
+          MapsLib.searchrecords = data.rows;
+          MapsLib.drawMarkers(MapsLib.searchrecords);
+          MapsLib.displaySearchCount(MapsLib.searchrecords.length);
         } else {
           MapsLib.displaySearchCount(0);
         }
@@ -242,6 +248,7 @@ var MapsLib = {
         map: map
       });
       marker.desc = rows[i][0];
+      MapsLib.markers.push(marker);
       oms.addMarker(marker);
     }
   },
