@@ -303,7 +303,6 @@ var MapsLib = {
         results.append(template);
       }
     }
-    results.fadeIn();
 
     // call the tablesorter plugin and apply the uitheme widget
     $("table").tablesorter({
@@ -317,6 +316,9 @@ var MapsLib = {
       }
     });
     $('table').trigger('update');
+
+    results.show();
+    $('table').fadeIn();
   },
 
   handleError: function(json) {
