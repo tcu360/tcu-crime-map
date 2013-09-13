@@ -91,7 +91,6 @@ var MapsLib = {
 
     MapsLib.searchrecords = null;
 
-    
     // setup the tablesorter plugin ... should probably move this to .initialize()
     $.extend($.tablesorter.themes.bootstrap, {
       table      : 'table',
@@ -258,7 +257,7 @@ var MapsLib = {
           MapsLib.handleError(data);
           MapsLib.searchrecords = data.rows;
           MapsLib.drawMarkers(MapsLib.searchrecords);
-          MapsLib.displayList(MapsLib.searchrecords, data.columns);
+          MapsLib.displayList(MapsLib.searchrecords);
           MapsLib.displaySearchCount(MapsLib.searchrecords.length);
         } else {
           MapsLib.displaySearchCount(0);
@@ -282,7 +281,7 @@ var MapsLib = {
     }
   },
 
-  displayList: function(rows, labels) {
+  displayList: function(rows) {
     var template = "";
 
     var results = $("#results_list");
@@ -293,28 +292,16 @@ var MapsLib = {
       results.fadeOut();
     }
     else {
-      header = "\
-        <thead>\
-          <tr>\
-            <th>" + labels[0] + "</th>\
-            <th>" + labels[1] + "</th>\
-            <th>" + labels[2] + "</th>\
-            <th>" + labels[3] + "</th>\
-          </tr>\
-        </thead>";
-      results.append(header);
-      template = '<tbody>';
       for (var row in rows) {
-        template += "\
+        template = "\
           <tr>\
             <td><strong>" + rows[row][0] + "</strong></td>\
             <td>" + rows[row][1] + "</td>\
             <td>" + rows[row][2] + "</td>\
             <td>" + rows[row][3] + "</td>\
-          </tr>"
+          </tr>";
+        results.append(template);
       }
-      template += '</tbody>';
-      results.append(template);
     }
     results.fadeIn();
 
@@ -329,6 +316,7 @@ var MapsLib = {
         filter_reset : ".reset"
       }
     });
+    $('table').trigger('update');
   },
 
   handleError: function(json) {

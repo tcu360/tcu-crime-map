@@ -64,7 +64,18 @@
         </div>
         <div class='col-sm-7 col-md-8'>
           <div id='map_canvas' style="height:400px;"></div>
-          <table id='results_list' class='table table-responsive table-hover table-bordered'></table>
+          <table class='table table-responsive table-hover table-bordered'>
+            <thead>
+              <tr>
+                <th>Type of crime</th>
+                <th>Type of offense</th>
+                <th>Date reported</th>
+                <th>Time</th>
+              </tr>
+            </thead>
+            <tbody id='results_list'>
+            </tbody>
+          </table>
           <p class='pull-right'>
             <a href='http://derekeder.com/searchable_map_template/'>Searchable Map Template</a> by <a href='http://derekeder.com'>Derek Eder</a>.
           </p>
