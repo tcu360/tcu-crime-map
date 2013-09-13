@@ -306,6 +306,27 @@ var MapsLib = {
       results.append(template);
     }
     results.fadeIn();
+
+    // setup the tablesorter plugin ... should probably move this to .initialize()
+    $.extend($.tablesorter.themes.bootstrap, {
+      table      : 'table',
+      icons      : 'glyphicon',
+      sortNone   : 'glyphicon-sort',
+      sortAsc    : 'glyphicon-sort-by-attributes',
+      sortDesc   : 'glyphicon-sort-by-attributes-alt',
+      active     : 'active' // applied when column is sorted
+    });
+
+    // call the tablesorter plugin and apply the uitheme widget
+    $("table").tablesorter({
+      theme : "bootstrap",
+      widthFixed: true,
+      headerTemplate : '{content} {icon}', // new in v2.7. Needed to add the bootstrap icon!
+      widgets : [ "uitheme" ],
+      widgetOptions : {
+        filter_reset : ".reset"
+      }
+    });
   },
 
   handleError: function(json) {

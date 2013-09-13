@@ -12,3 +12,20 @@
 
 /* Optional responsive image override */
 img { max-width: none; }
+
+/*
+ * Data table
+ */
+td{
+  min-width: 75px;
+}
+th{
+  cursor: pointer;
+}
+.tablesorter-icon{
+  right: 0;
+  position: absolute;
+}
+.tablesorter-icon.glyphicon-sort{
+  opacity: .3;
+}
