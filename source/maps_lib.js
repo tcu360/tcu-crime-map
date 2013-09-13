@@ -93,6 +93,8 @@ var MapsLib = {
     
     //-----custom initializers-------
 
+    //-----date reported slider-------
+
     //ranges for our slider
     var minDate = moment("May 15 2012"); // Jan 1st 2010
     var maxDate = moment(); //now
@@ -102,6 +104,8 @@ var MapsLib = {
     var endDate = moment(); //now
 
     MapsLib.initializeDateSlider(minDate, maxDate, startDate, endDate, "days", 7);
+
+    //-----end date reported slider-------
     
     //-----end of custom initializers-------
 
@@ -118,8 +122,12 @@ var MapsLib = {
 
     //-----custom filters-------
 
+    //-----date reported slider-------
+
     whereClause += " AND 'Date Reported' >= '" + $('#startDate').html() + "'";
     whereClause += " AND 'Date Reported' <= '" + $('#endDate').html() + "'";
+
+    //-----end date reported slider-------
 
     //-------end of custom filters--------
 
@@ -301,6 +309,8 @@ var MapsLib = {
   //-----custom functions-------
   // NOTE: if you add custom functions, make sure to append each one with a comma, except for the last one.
   // This also applies to the convertToPlainString function above
+
+  //-----date reported slider-------
   
   initializeDateSlider: function(minDate, maxDate, startDate, endDate, stepType, step) {
     var interval = MapsLib.sliderInterval(stepType);
@@ -342,6 +352,8 @@ var MapsLib = {
     else
       return 1;
   }
+
+  //-----end date reported slider-------
 
   //-----end of custom functions-------
 }
