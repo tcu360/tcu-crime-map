@@ -45,6 +45,14 @@ var MapsLib = {
   // array to hold map markers
   markers: [],
 
+  mappings: {
+    latitude: 9,
+    longitude: 10,
+    crimeType: 0,
+    offenseType: 1,
+    dateReported: 2
+  },
+
   initialize: function() {
     $( "#result_count" ).html("");
 
@@ -239,7 +247,7 @@ var MapsLib = {
           MapsLib.handleError(data);
           MapsLib.searchrecords = data.rows;
           MapsLib.drawMarkers(MapsLib.searchrecords);
-          MapsLib.displayList(MapsLib.searchrecords);
+          MapsLib.displayList(MapsLib.searchrecords, data.columns);
           MapsLib.displaySearchCount(MapsLib.searchrecords.length);
         } else {
           MapsLib.displaySearchCount(0);
@@ -254,16 +262,16 @@ var MapsLib = {
       var loc = new google.maps.LatLng(rows[i][9], rows[i][10]);
       var marker = new google.maps.Marker({
         position: loc,
-        title: rows[i][1],
+        title: rows[i][MapsLib.mappings.offenseType],
         map: map
       });
-      marker.desc = rows[i][0];
+      marker.desc = rows[i][MapsLib.mappings.crimeType];
       MapsLib.markers.push(marker);
       oms.addMarker(marker);
     }
   },
 
-  displayList: function(rows) {
+  displayList: function(rows, labels) {
     var template = "";
 
     var results = $("#results_list");
@@ -274,16 +282,28 @@ var MapsLib = {
       results.fadeOut();
     }
     else {
+      header = "\
+        <thead>\
+          <tr>\
+            <th>" + labels[0] + "</th>\
+            <th>" + labels[1] + "</th>\
+            <th>" + labels[2] + "</th>\
+            <th>" + labels[3] + "</th>\
+          </tr>\
+        </thead>";
+      results.append(header);
+      template = '<tbody>';
       for (var row in rows) {
-        template = "\
+        template += "\
           <tr>\
             <td><strong>" + rows[row][0] + "</strong></td>\
             <td>" + rows[row][1] + "</td>\
             <td>" + rows[row][2] + "</td>\
             <td>" + rows[row][3] + "</td>\
           </tr>"
-        results.append(template);
       }
+      template += '</tbody>';
+      results.append(template);
     }
     results.fadeIn();
   },
