@@ -236,8 +236,10 @@ var MapsLib = {
       dataType: 'jsonp',
       success: function (data) {
         if(data.rows) {
+          MapsLib.handleError(data);
           MapsLib.searchrecords = data.rows;
           MapsLib.drawMarkers(MapsLib.searchrecords);
+          MapsLib.displayList(MapsLib.searchrecords);
           MapsLib.displaySearchCount(MapsLib.searchrecords.length);
         } else {
           MapsLib.displaySearchCount(0);
@@ -259,6 +261,36 @@ var MapsLib = {
       MapsLib.markers.push(marker);
       oms.addMarker(marker);
     }
+  },
+
+  displayList: function(rows) {
+    var template = "";
+
+    var results = $("#results_list");
+    results.hide().empty(); //hide the existing list and empty it out first
+
+    if (rows == null) {
+      //clear results list
+      results.append("<li><span class='lead'>No results found</span></li>");
+    }
+    else {
+      for (var row in rows) {
+        template = "\
+          <div class='row-fluid item-list'>\
+            <div class='span12'>\
+              <strong>" + rows[row][0] + "</strong>\
+              <br />\
+              " + rows[row][1] + "\
+              <br />\
+              " + rows[row][2] + "\
+              <br />\
+              " + rows[row][3] + "\
+            </div>\
+          </div>"
+        results.append(template);
+      }
+    }
+    results.fadeIn();
   },
 
   handleError: function(json) {
