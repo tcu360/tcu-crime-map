@@ -16,9 +16,9 @@
   </head>
   <body>
     <div class='container'>
-      <h1>TCU 360 crime map</h1>
       <div class='row'>
         <div class='col-sm-5 col-md-4'>
+          <h1>TCU 360 crime map</h1>
           <p>This is a demo of <a href='http://derekeder.com'>Derek Eder's</a> <a href='http://derekeder.com/searchable_map_template/'>Searchable Map Template</a> using Google <a href='http://support.google.com/fusiontables/answer/2571232?hl=en&ref_topic=1652595'>Fusion Tables</a>. Use this section to give a little context your map. Maybe a link to <a href='#'>read more &raquo;</a></p>
           <div class="panel panel-default">
             <div class="panel-heading">
@@ -61,7 +61,7 @@
           <p class='alert alert-info lead' id='result_count'></p>
         </div>
         <div class='col-sm-7 col-md-8'>
-          <div id='map_canvas'></div>
+          <div id='map_canvas' style="height:400px;"></div>
           <table id='results_list' class='table table-responsive table-hover table-bordered'></table>
           <p class='pull-right'>
             <a href='http://derekeder.com/searchable_map_template/'>Searchable Map Template</a> by <a href='http://derekeder.com'>Derek Eder</a>.
@@ -83,10 +83,12 @@
     <script src="js/maps_lib.js"></script>
     <script>
         $(window).resize(function () {
-          var h = $(window).height(),
-            offsetTop = 90; // Calculate the top offset
+          var width = $('#map_canvas').width();
+          $('#map_canvas').height(width / 1.875);
+          // var h = $(window).height(),
+            
         
-          $('#map_canvas').css('height', (h - offsetTop));
+          // $('#map_canvas').css('height', (h - offsetTop));
         }).resize();
         
         $(function() {

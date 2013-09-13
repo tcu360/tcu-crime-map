@@ -16,6 +16,9 @@ img { max-width: none; }
 /*
  * Data table
  */
+table{
+  margin-top: 25px;
+}
 td{
   min-width: 75px;
 }
