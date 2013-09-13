@@ -29,3 +29,6 @@ th{
 .tablesorter-icon.glyphicon-sort{
   opacity: .3;
 }
+th:hover .tablesorter-icon.glyphicon-sort{
+  opacity: .5; 
+}
