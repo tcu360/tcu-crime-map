@@ -20,26 +20,30 @@
       <div class='row'>
         <div class='col-sm-5 col-md-4'>
           <p>This is a demo of <a href='http://derekeder.com'>Derek Eder's</a> <a href='http://derekeder.com/searchable_map_template/'>Searchable Map Template</a> using Google <a href='http://support.google.com/fusiontables/answer/2571232?hl=en&ref_topic=1652595'>Fusion Tables</a>. Use this section to give a little context your map. Maybe a link to <a href='#'>read more &raquo;</a></p>
-          <div class='well'>
-            <h4>
-              Address <small>(<a id='find_me' href='#'>find me</a>)</small>
-            </h4>
-            <input class='input' id='search_address' placeholder='Enter an address or an intersection' type='text' />
-            <label>
-              within
-              <select class='input-sm' id='search_radius'>
-                <option value='400'>2 blocks</option>
-                <option value='805'>1/2 mile</option>
-                <option value='1610'>1 mile</option>
-                <option value='3220'>2 miles</option>
-              </select>
-            </label>
-            <input class='btn btn-default btn-primary' id='search' type='button' value='Search' />
-            <button class='btn btn-default' id='reset'>Reset</button>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4>
+              Address
+              <small>(<a id='find_me' href='#'>find me</a>)</small></h4>
+            </div>
+            <div class="panel-body">
+              <input class='input' id='search_address' placeholder='Enter an address or an intersection' type='text' />
+              <label>
+                within
+                <select class='input-sm' id='search_radius'>
+                  <option value='400'>2 blocks</option>
+                  <option value='805'>1/2 mile</option>
+                  <option value='1610'>1 mile</option>
+                  <option value='3220'>2 miles</option>
+                </select>
+              </label>
+              <input class='btn btn-default btn-primary' id='search' type='button' value='Search' />
+              <button class='btn btn-default' id='reset'>Reset</button>
+            </div>
           </div>
-          <div class='well'>
-            <!-- Once you decide what filter you want, place the HTML code here. The section in the maps_lib.js is also marked. Once you're done, feel free to delete this explanatory section.-->
-            <h4>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4>
                 Date reported
                 <small>
                 <span id="startDate"></span>
@@ -47,10 +51,12 @@
                 <span id="endDate"></span>
                 </small>
             </h4>
-            <div id="date-range"></div>
-            <p class='pull-left' id='minDate'></p>
-            <p class='pull-right' id='maxDate'></p>
-            
+            </div>
+            <div class="panel-body">
+              <div id="date-range"></div>
+              <p class='pull-left' id='minDate'></p>
+              <p class='pull-right' id='maxDate'></p>
+            </div>
           </div>
           <p class='alert alert-info lead' id='result_count'></p>
         </div>
