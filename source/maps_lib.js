@@ -271,22 +271,17 @@ var MapsLib = {
 
     if (rows == null) {
       //clear results list
-      results.append("<li><span class='lead'>No results found</span></li>");
+      results.fadeOut();
     }
     else {
       for (var row in rows) {
         template = "\
-          <div class='row-fluid item-list'>\
-            <div class='span12'>\
-              <strong>" + rows[row][0] + "</strong>\
-              <br />\
-              " + rows[row][1] + "\
-              <br />\
-              " + rows[row][2] + "\
-              <br />\
-              " + rows[row][3] + "\
-            </div>\
-          </div>"
+          <tr>\
+            <td><strong>" + rows[row][0] + "</strong></td>\
+            <td>" + rows[row][1] + "</td>\
+            <td>" + rows[row][2] + "</td>\
+            <td>" + rows[row][3] + "</td>\
+          </tr>"
         results.append(template);
       }
     }
