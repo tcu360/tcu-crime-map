@@ -65,7 +65,10 @@ var MapsLib = {
     map = new google.maps.Map($("#map_canvas")[0],myOptions);
 
     // create new spiderfier instance
-    oms = new OverlappingMarkerSpiderfier(map);
+    var omsOptions = {
+      keepSpiderfied: true
+    }
+    oms = new OverlappingMarkerSpiderfier(map, omsOptions);
 
     // spiderfier event listener
     var iw = new google.maps.InfoWindow();
