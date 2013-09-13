@@ -1,31 +1,14 @@
-/*
+/* Fix Google Maps canvas
+ *
+ * Wrap your Google Maps embed in a `.google-map-canvas` to reset Bootstrap's
+ * global `box-sizing` changes. You may optionally need to reset the `max-width`
+ * on images in case you've applied that anywhere else. (That shouldn't be as
+ * necessary with Bootstrap 3 though as that behavior is relegated to the
+ * `.img-responsive` class.)
+ */
 
-a { color: #4B58A6; }
+.google-map-canvas,
+.google-map-canvas * { .box-sizing(content-box); }
 
-#map_canvas img {
-  max-width: none;
-}
-
-.filter-box { 
-  height: 15px; 
-  width: 15px;  
-  display: inline-block;
-  *border-right-width: 2px;
-  *border-bottom-width: 2px;
-  -webkit-border-radius: 5px;
-     -moz-border-radius: 5px;
-          border-radius: 5px;
-  -webkit-background-clip: padding-box;
-     -moz-background-clip: padding;
-          background-clip: padding-box; 
-}
-
-.filter-yellow { background-color: #FBF358; }
-.filter-green { background-color: #00E13C; }
-.filter-blue { background-color: #5781FC; }
-.filter-purple { background-color: #7C54FB; }
-.filter-red { background-color: #FB6353; }
-
-canvas {-ms-touch-action: double-tap-zoom;}
-
-*/
+/* Optional responsive image override */
+img { max-width: none; }
