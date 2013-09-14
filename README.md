@@ -10,6 +10,9 @@ Roadmap
 
 Major change log
 ---------------------------
+__9/14/13__
+* New map markers, [map marker behavior](https://github.com/tcu360/tcu-crime-map/commit/fa725a633d3327d67b82a886352b431d015928e4)
+
 __9/13/13__
 * Upgraded to Bootstrap 3.
 * Added sortable table view below map using [`tablesorter`](http://tablesorter.com/docs/).
