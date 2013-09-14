@@ -73,14 +73,8 @@ var MapsLib = {
     // spiderfier event listener
     var iw = new google.maps.InfoWindow();
     oms.addListener('click', function(marker, event) {
-      console.log('Cluster clicked.');
       iw.setContent(marker.desc);
       iw.open(map, marker);
-    });
-
-    // spiderfy listener
-    oms.addListener('spiderfy', function(markers) {
-      console.log('Spiderfied');
     });
 
     // maintains map centerpoint for responsive design
@@ -298,11 +292,10 @@ var MapsLib = {
       }
       var marker = new google.maps.Marker({
         position: loc,
-        title: rows[i][MapsLib.mappings.offenseType],
+        desc: rows[i][MapsLib.mappings.crimeType],
         map: map,
         icon: icon
       });
-      marker.desc = rows[i][MapsLib.mappings.crimeType];
       MapsLib.markers.push(marker);
       oms.addMarker(marker);
     }
