@@ -124,7 +124,7 @@ var MapsLib = {
     //-----date reported slider-------
 
     //ranges for our slider
-    var minDate = moment("May 15 2012"); // Jan 1st 2010
+    var minDate = moment("Jan 1 2012"); // Jan 1st 2010
     var maxDate = moment(); //now
 
     //starting values
