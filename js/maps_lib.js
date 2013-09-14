@@ -70,17 +70,24 @@ var MapsLib = {
     }
     oms = new OverlappingMarkerSpiderfier(map, omsOptions);
 
-    // spiderfier event listener
+    // event listener to generate info window
     var iw = new google.maps.InfoWindow();
     oms.addListener('click', function(marker, event) {
-      console.log('Cluster clicked.');
       iw.setContent(marker.desc);
       iw.open(map, marker);
     });
 
-    // spiderfy listener
+    // listeners to swap icons
+    markerIcons = [];
     oms.addListener('spiderfy', function(markers) {
-      console.log('Spiderfied');
+      for(i in markers) {
+        markers[i].icon.url = 'img/pin_' + markerIcons[markers[i].__gm_id] + '.png';
+      }
+    });
+    oms.addListener('unspiderfy', function(markers) {
+      for(i in markers) {
+        markers[i].icon.url = 'img/pin_' + markers.length + '.png';
+      }
     });
 
     // maintains map centerpoint for responsive design
@@ -193,6 +200,7 @@ var MapsLib = {
       for (i in MapsLib.markers) {
         MapsLib.markers[i].setMap(null);
       }
+      oms.clearMarkers();
     if (MapsLib.addrMarker != null)
       MapsLib.addrMarker.setMap(null);
     if (MapsLib.searchRadiusCircle != null)
@@ -270,15 +278,41 @@ var MapsLib = {
   },
 
   drawMarkers: function(rows) {
-    for (var i = 1; i < rows.length; i ++) {
+    // count number of incidents per unique location
+    locationCount = [];
+    for (var i = 0; i < rows.length; i ++) {
+      var locationKey = rows[i][9].toString() + rows[i][10].toString();
+      if(locationCount[locationKey]) {
+        locationCount[locationKey]++;
+      }
+      else {
+        locationCount[locationKey] = 1;
+      }
+    }
+    for (var i = 0; i < rows.length; i ++) {
       var record = rows[i];
       var loc = new google.maps.LatLng(rows[i][9], rows[i][10]);
+      // if multiple crimes per location, use a number icon else an icon for the incident type
+      var iconName = rows[i][MapsLib.mappings.crimeType].replace(/\s+/g, '').toLowerCase();
+      var icon = {
+        size: new google.maps.Size(46, 64),
+        scaledSize: new google.maps.Size(35,48),
+        anchor: new google.maps.Point(17,47)
+      };
+      var locationKey = rows[i][9].toString() + rows[i][10].toString();
+      if(locationCount[locationKey] > 1) {
+        icon.url = 'img/pin_' + locationCount[locationKey].toString() + '.png';
+      }
+      else {
+        icon.url = 'img/pin_' + iconName + '.png';
+      }
       var marker = new google.maps.Marker({
         position: loc,
-        title: rows[i][MapsLib.mappings.offenseType],
-        map: map
+        desc: rows[i][MapsLib.mappings.crimeType],
+        map: map,
+        icon: icon
       });
-      marker.desc = rows[i][MapsLib.mappings.crimeType];
+      markerIcons[marker.__gm_id] = iconName;
       MapsLib.markers.push(marker);
       oms.addMarker(marker);
     }
