@@ -193,6 +193,7 @@ var MapsLib = {
       for (i in MapsLib.markers) {
         MapsLib.markers[i].setMap(null);
       }
+      oms.clearMarkers();
     if (MapsLib.addrMarker != null)
       MapsLib.addrMarker.setMap(null);
     if (MapsLib.searchRadiusCircle != null)
