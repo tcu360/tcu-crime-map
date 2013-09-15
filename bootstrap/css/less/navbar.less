@@ -13,7 +13,10 @@
   z-index: @zindex-navbar;
   min-height: @navbar-height; // Ensure a navbar always shows (e.g., without a .navbar-brand in collapsed mode)
   margin-bottom: @navbar-margin-bottom;
-  border: 1px solid transparent;
+  border-top: 1px solid transparent;
+  border-bottom: 1px solid transparent;
+
+  .box-shadow(0px 1px 9px rgba(0,0,0,0.2));
 
   // Prevent floats from breaking the navbar
   .clearfix();
@@ -150,8 +153,10 @@
 .navbar-brand {
   float: left;
   padding: @navbar-padding-vertical @navbar-padding-horizontal;
-  font-size: @font-size-large;
+  height: @navbar-height;
   line-height: @line-height-computed;
+  background: url('../../img/tcu360_logo.jpg') no-repeat 16px 1px;
+  width: 186px;
   &:hover,
   &:focus {
     text-decoration: none;
@@ -369,7 +374,10 @@
 
   .navbar-nav {
     > li > a {
+      font-size: @font-size-large;
+      font-weight: @font-weight-bold;
       color: @navbar-default-link-color;
+      text-decoration: none;
 
       &:hover,
       &:focus {
