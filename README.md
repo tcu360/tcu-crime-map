@@ -27,6 +27,7 @@ Includes
 * [Bootstrap](https://github.com/twbs/bootstrap) v3.0.0
 * [jQuery Address](https://github.com/asual/jquery-address) v1.6
 * [jQuery Geocoding and Places Autocomplete Plugin](https://github.com/ubilabs/geocomplete/) v1.4
+* [Map icons from WebIconSet.com](http://www.webiconset.com/map-icons/)
 * [Moment.js](https://github.com/moment/moment) v2.10
 * [OverlappingMarkerSpiderfier](https://github.com/jawj/OverlappingMarkerSpiderfier) v0.3
 * [TableSorter](https://github.com/Mottie/tablesorter) v2.10.8
