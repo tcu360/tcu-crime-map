@@ -5,7 +5,6 @@ Roadmap
 ---------------------------
 * Add filters
 * Add Facebook, Twitter sharing capabilities
-* Integrate Google Analytics, Chartbeat
 
 Major change log
 ---------------------------
