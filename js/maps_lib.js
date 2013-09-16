@@ -103,7 +103,7 @@ var MapsLib = {
     // setup the tablesorter plugin ... should probably move this to .initialize()
     $.extend($.tablesorter.themes.bootstrap, {
       table      : 'table',
-      icons      : 'glyphicon',
+      icons      : 'glyphicon pull-right',
       sortNone   : 'glyphicon-sort',
       sortAsc    : 'glyphicon-sort-by-attributes',
       sortDesc   : 'glyphicon-sort-by-attributes-alt',

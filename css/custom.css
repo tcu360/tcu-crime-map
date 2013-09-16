@@ -26,10 +26,6 @@ td{
 th{
   cursor: pointer;
 }
-.tablesorter-icon{
-  right: 0;
-  position: absolute;
-}
 .tablesorter-icon.glyphicon-sort{
   opacity: .3;
 }
