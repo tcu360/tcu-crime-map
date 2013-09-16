@@ -44,6 +44,9 @@ th:hover .tablesorter-icon.glyphicon-sort{
 /*
  * Footer
  */
-footer p{
-	margin: 30px 0;
+footer p {
+	margin: 45px 0 20px 0;
+}
+footer p a{
+	color: #333;
 }
