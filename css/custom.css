@@ -40,3 +40,10 @@ th:hover .tablesorter-icon.glyphicon-sort{
 	margin-top: 6px;
 	margin-bottom: 6px;
 }
+
+/*
+ * Footer
+ */
+footer p{
+	margin: 30px 0;
+}
