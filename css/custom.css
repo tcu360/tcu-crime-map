@@ -36,3 +36,11 @@ th{
 th:hover .tablesorter-icon.glyphicon-sort{
   opacity: .5; 
 }
+
+/*
+ * Filters
+ */
+.filter-incident-type hr{
+	margin-top: 6px;
+	margin-bottom: 6px;
+}

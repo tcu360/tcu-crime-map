@@ -518,7 +518,13 @@ input[type="submit"].btn-block,input[type="reset"].btn-block,input[type="button"
 .label-info{background-color:#5bc0de}.label-info[href]:hover,.label-info[href]:focus{background-color:#31b0d5}
 .label-warning{background-color:#f0ad4e}.label-warning[href]:hover,.label-warning[href]:focus{background-color:#ec971f}
 .label-danger{background-color:#d9534f}.label-danger[href]:hover,.label-danger[href]:focus{background-color:#c9302c}
-.badge{display:inline-block;min-width:10px;padding:3px 7px;font-size:14px;font-weight:bold;color:#fff;line-height:1;vertical-align:baseline;white-space:nowrap;text-align:center;background-color:#999;border-radius:10px}.badge:empty{display:none}
+.badge{display:inline-block;min-width:10px;padding:3px 7px;font-size:14px;font-weight:bold;color:#fff;line-height:1;vertical-align:baseline;white-space:nowrap;text-align:center;background-color:#999;border-radius:10px}.badge.badge-blue{background-color:#428bca}
+.badge.badge-green{background-color:#5cb85c}
+.badge.badge-cyan{background-color:#5bc0de}
+.badge.badge-orange{background-color:#f0ad4e}
+.badge.badge-red{background-color:#d9534f}
+.badge:empty{display:none}
+label .badge{margin-left:8px}
 a.badge:hover,a.badge:focus{color:#fff;text-decoration:none;cursor:pointer}
 .btn .badge{position:relative;top:-1px}
 a.list-group-item.active>.badge,.nav-pills>.active>a>.badge{color:#4d1979;background-color:#fff}

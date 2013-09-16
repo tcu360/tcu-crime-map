@@ -43,7 +43,7 @@
     </header>
     <div class='container'>
       <div class='row'>
-        <div class='col-sm-5 col-md-4'>
+        <div class='col-sm-5 col-md-3'>
           <div class='page-header'>
             <h1>Crime map</h1>
           </div>
@@ -86,9 +86,50 @@
               <p class='pull-right' id='maxDate'></p>
             </div>
           </div>
-          <p class='alert alert-info lead' id='result_count'></p>
+          <div class="panel panel-default filter-incident-type">
+            <div class="panel-heading">
+              <h4>Incident type</h4>
+            </div>
+            <div class="panel-body">
+              <div class='checkbox'>
+                <label>
+                  <input type='checkbox' />
+                  City drop-off location<span class="badge badge-green pull-right">42</span>
+                </label>
+              </div>
+              <div class='checkbox'>
+                <label>
+                  <input type='checkbox' />
+                  Private business<span class="badge badge-cyan pull-right">42</span>
+                </label>
+              </div>
+              <div class='checkbox'>
+                <label>
+                  <input type='checkbox' />
+                  Hazardous materials<span class="badge badge-orange pull-right">42</span>
+                </label>
+              </div>
+              <div class='checkbox'>
+                <label>
+                  <input type='checkbox' />
+                  Hazardous materials<span class="badge badge-red pull-right">42</span>
+                </label>
+              </div>
+              <div class='checkbox'>
+                <label>
+                  <input type='checkbox' />
+                  Hazardous materials<span class="badge badge-blue pull-right">42</span>
+                </label>
+              </div>
+              <hr />
+              <label class='checkbox-inline'>
+                <strong>Total</strong>
+              </label>
+              <span id="result_count" class="badge pull-right">42</span>
+            </div>
+          </div>
         </div>
-        <div class='col-sm-7 col-md-8'>
+        <div class='col-sm-7 col-md-9'>
           <div id='map_canvas' style="height:400px;"></div>
           <table class='table table-responsive table-hover table-bordered'>
             <thead>

@@ -34,9 +34,7 @@ var MapsLib = {
 
   map_centroid:       new google.maps.LatLng(32.708, -97.363029), //center that your map defaults to
   locationScope:      "fort worth",      //geographical area appended to all address searches
-  recordName:         "crime",       //for showing number of results
-  recordNamePlural:   "crimes",
-
+  
   searchRadius:       805,            //in meters ~ 1/2 mile
   defaultZoom:        15,             //zoom level when map is loaded (bigger is more zoomed in)
   addrMarkerImage: 'http://derekeder.com/images/icons/blue-pushpin.png',
@@ -150,12 +148,28 @@ var MapsLib = {
 
     //-----custom filters-------
 
-    //-----date reported slider-------
+    //-----date reported slider-----
 
     whereClause += " AND 'Date Reported' >= '" + $('#startDate').html() + "'";
     whereClause += " AND 'Date Reported' <= '" + $('#endDate').html() + "'";
 
-    //-----end date reported slider-------
+    //-----end date reported slider-----
+
+    //-----incident type checkboxes-----
+
+    /*
+
+    var type_column = "'type'";
+    var tempWhereClause = [];
+    if ( $("#cbType1").is(':checked')) tempWhereClause.push("Healthcare");
+    if ( $("#cbType2").is(':checked')) tempWhereClause.push("Property");
+    if ( $("#cbType3").is(':checked')) tempWhereClause.push("Public");
+    if ( $("#cbType4").is(':checked')) tempWhereClause.push("Other");
+    whereClause += " AND " + type_column + " IN ('" + tempWhereClause.join("','") + "')";
+
+    */
+
+    //-----end incicident type checkboxes-----
 
     //-------end of custom filters--------
 
@@ -375,7 +389,7 @@ var MapsLib = {
     if (numRows == 1)
     name = MapsLib.recordName;
     $( "#result_count" ).fadeOut(function() {
-        $( "#result_count" ).html(MapsLib.addCommas(numRows) + " " + name + " found");
+        $( "#result_count" ).text(MapsLib.addCommas(numRows));
       });
     $( "#result_count" ).fadeIn();
   },

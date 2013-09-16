@@ -17,11 +17,28 @@
   text-align: center;
   background-color: @badge-bg;
   border-radius: @badge-border-radius;
-
+  &.badge-blue{
+    background-color: @brand-blue;
+  }
+  &.badge-green{
+    background-color: @brand-green;
+  }
+  &.badge-cyan{
+    background-color: @brand-cyan;
+  }
+  &.badge-orange{
+    background-color: @brand-orange;
+  }
+  &.badge-red{
+    background-color: @brand-red;
+  }
   // Empty badges collapse automatically (not available in IE8)
   &:empty {
     display: none;
   }
+}
+label .badge{
+  margin-left: 8px;
 }
 
 // Hover state, but only for links
