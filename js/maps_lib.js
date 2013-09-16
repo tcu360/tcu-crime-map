@@ -111,9 +111,6 @@ var MapsLib = {
 
     //reset filters
     $("#search_address").val(MapsLib.convertToPlainString($.address.parameter('address')));
-    var loadRadius = MapsLib.convertToPlainString($.address.parameter('radius'));
-    if (loadRadius != "") $("#search_radius").val(loadRadius);
-    else $("#search_radius").val(MapsLib.searchRadius);
     $(":checkbox").attr("checked", "checked");
     $("#result_count").hide();
     
@@ -139,10 +136,13 @@ var MapsLib = {
     MapsLib.doSearch();
   },
 
-  doSearch: function(location) {
+  doSearch: function(location, radius) {
     MapsLib.clearSearch();
     var address = $("#search_address").val();
-    MapsLib.searchRadius = $("#search_radius").val();
+
+    if(radius) {
+      MapsLib.searchRadius = radius;
+    }
 
     var whereClause = MapsLib.locationColumn + " not equal to ''";
 

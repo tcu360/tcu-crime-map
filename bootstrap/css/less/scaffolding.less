@@ -44,15 +44,20 @@ textarea {
 a {
   color: @link-color;
   font-weight: @font-weight-semibold;
+  text-decoration: none;
 
   &:hover,
   &:focus {
     color: @link-hover-color;
-    text-decoration: underline;
   }
 
   &:focus {
     .tab-focus();
+  }
+}
+p {
+  a {
+    text-decoration: underline;
   }
 }
 

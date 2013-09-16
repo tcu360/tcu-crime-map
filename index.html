@@ -55,18 +55,21 @@
               <small>(<a id='find_me' href='#'>find me</a>)</small></h4>
             </div>
             <div class="panel-body">
-              <input class='input' id='search_address' placeholder='Enter an address or an intersection' type='text' />
-              <label>
-                within
-                <select class='input-sm' id='search_radius'>
-                  <option value='400'>2 blocks</option>
-                  <option value='805'>1/2 mile</option>
-                  <option value='1610'>1 mile</option>
-                  <option value='3220'>2 miles</option>
-                </select>
-              </label>
-              <input class='btn btn-default btn-primary' id='search' type='button' value='Search' />
-              <button class='btn btn-default' id='reset'>Reset</button>
+
+              <div class="input-group">
+                <input id='search_address' type="text" class="form-control" placeholder='Enter an address'>
+                <div class="input-group-btn">
+                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Search <span class="caret"></span></button>
+                  <ul id="search" class="dropdown-menu pull-right">
+                    <li><a href="#" data-distance="400" class='radius'>within 2 blocks</a></li>
+                    <li><a href="#" data-distance="805" class='radius'>within 1/2 mile</a></li>
+                    <li><a href="#" data-distance="1610" class='radius'>within 1 mile</a></li>
+                    <li><a href="#" data-distance="3220" class='radius'>within 2 mile</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#" class='reset'>Reset</a></li>
+                  </ul>
+                </div><!-- /btn-group -->
+              </div><!-- /input-group -->
             </div>
           </div>
           <div class="panel panel-default">
@@ -169,7 +172,7 @@
         
         $(function() {
           MapsLib.initialize();
-          $("#search_address").geocomplete();
+          // $("#search_address").geocomplete();
 
           $(':checkbox').click(function(){
             MapsLib.doSearch();
@@ -179,12 +182,8 @@
             MapsLib.doSearch();
           });
           
-          $('#search_radius').change(function(){
-            MapsLib.doSearch();
-          });
-          
-          $('#search').click(function(){
-            MapsLib.doSearch();
+          $('#search a.radius').click(function(){
+            MapsLib.doSearch(null, $(this).data('distance'));
           });
           
           $('#find_me').click(function(){
@@ -192,7 +191,7 @@
             return false;
           });
           
-          $('#reset').click(function(){
+          $('#search a.reset').click(function(){
             $.address.parameter('address','');
             MapsLib.initialize(); 
             return false;
