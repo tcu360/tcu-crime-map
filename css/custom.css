@@ -26,10 +26,10 @@ td{
 th{
   cursor: pointer;
 }
-.tablesorter-icon.glyphicon-sort{
+.tablesorter-icon.icon-sort{
   opacity: .3;
 }
-th:hover .tablesorter-icon.glyphicon-sort{
+th:hover .tablesorter-icon.icon-sort{
   opacity: .5; 
 }
 
