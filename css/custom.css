@@ -16,20 +16,20 @@ img { max-width: none; }
 /*
  * Data table
  */
-table{
+table.sortable{
   margin-top: 25px;
   display:none;
 }
-td{
+table.sortable td{
   min-width: 75px;
 }
-th{
+table.sortable th{
   cursor: pointer;
 }
 .tablesorter-icon.icon-sort{
   opacity: .3;
 }
-th:hover .tablesorter-icon.icon-sort{
+table.sortable th:hover .tablesorter-icon.icon-sort{
   opacity: .5; 
 }
 

@@ -51,6 +51,10 @@ var MapsLib = {
     dateReported: 2
   },
 
+  // initial start and end date
+  startDate: moment().subtract('days', 29),
+  endDate: moment(),
+
   initialize: function() {
     $( "#result_count" ).html("");
 
@@ -110,26 +114,35 @@ var MapsLib = {
       active     : 'active' // applied when column is sorted
     });
 
+    // setup date range picker
+    $('#daterange').daterangepicker({
+        ranges: {
+         'Last 7 Days': [moment().subtract('days', 6), moment()],
+         'Last 30 Days': [moment().subtract('days', 29), moment()],
+         'This Month': [moment().startOf('month'), moment().endOf('month')],
+         'Last Month': [moment().subtract('month', 1).startOf('month'), moment().subtract('month', 1).endOf('month')],
+         'All Available Date': [moment('2012-01-01'), moment()]
+        },
+        startDate: MapsLib.startDate,
+        endDate: MapsLib.endDate,
+        minDate: moment('2012-01-01'),
+        maxDate: moment(),
+        format: 'l'
+      },
+      function(start, end) {
+        MapsLib.startDate = start;
+        MapsLib.endDate = end;
+        MapsLib.doSearch();
+      }
+    );
+    $('#daterange').val(MapsLib.startDate.format('l') + ' - ' + MapsLib.endDate.format('l'));
+
     //reset filters
     $("#search_address").val(MapsLib.convertToPlainString($.address.parameter('address')));
     $(":checkbox").attr("checked", "checked");
     $("#result_count").hide();
     
     //-----custom initializers-------
-
-    //-----date reported slider-------
-
-    //ranges for our slider
-    var minDate = moment("Jan 1 2012"); // Jan 1st 2010
-    var maxDate = moment(); //now
-
-    //starting values
-    var startDate = moment().subtract('months', 1); //past 3 months
-    var endDate = moment(); //now
-
-    MapsLib.initializeDateSlider(minDate, maxDate, startDate, endDate, "days", 7);
-
-    //-----end date reported slider-------
     
     //-----end of custom initializers-------
 
@@ -149,12 +162,12 @@ var MapsLib = {
 
     //-----custom filters-------
 
-    //-----date reported slider-----
+    //-----date reported picker-----
 
-    whereClause += " AND 'Date Reported' >= '" + $('#startDate').html() + "'";
-    whereClause += " AND 'Date Reported' <= '" + $('#endDate').html() + "'";
+    whereClause += " AND 'Date Reported' >= '" + MapsLib.startDate.format('L') + "'";
+    whereClause += " AND 'Date Reported' <= '" + MapsLib.endDate.format('L') + "'";
 
-    //-----end date reported slider-----
+    //-----end date reported picker-----
 
     //-----incident type checkboxes-----
 
@@ -357,7 +370,7 @@ var MapsLib = {
     }
 
     // call the tablesorter plugin and apply the uitheme widget
-    $("table").tablesorter({
+    $("table.sortable").tablesorter({
       theme : "bootstrap",
       widthFixed: true,
       headerTemplate : '{content} {icon}', // new in v2.7. Needed to add the bootstrap icon!
@@ -421,51 +434,6 @@ var MapsLib = {
   //-----custom functions-------
   // NOTE: if you add custom functions, make sure to append each one with a comma, except for the last one.
   // This also applies to the convertToPlainString function above
-
-  //-----date reported slider-------
-  
-  initializeDateSlider: function(minDate, maxDate, startDate, endDate, stepType, step) {
-    var interval = MapsLib.sliderInterval(stepType);
-
-    $('#minDate').html(minDate.format('MMM YYYY'));
-    $('#maxDate').html(maxDate.format('MMM YYYY'));
-    
-    $('#startDate').html(startDate.format('L'));
-    $('#endDate').html(endDate.format('L'));
-    
-    $('#date-range').slider({
-      range: true,
-      step: step,
-      values: [ Math.floor((startDate.valueOf() - minDate.valueOf()) / interval), Math.floor((maxDate.valueOf() - minDate.valueOf()) / interval) ],
-        max: Math.floor((maxDate.valueOf() - minDate.valueOf()) / interval),
-        slide: function(event, ui) {
-            $('#startDate').html(minDate.clone().add(stepType, ui.values[0]).format('L'));
-            $('#endDate').html(minDate.clone().add(stepType, ui.values[1]).format('L'));
-        },
-        stop: function(event, ui) {
-          MapsLib.doSearch();
-        }
-    });
-  },
-
-  sliderInterval: function(interval) {
-    if (interval == "years")
-      return 365 * 24 * 3600 * 1000;
-    if (interval == "quarters")
-      return 3 * 30.4 * 24 * 3600 * 1000;
-    if (interval == "months") //this is very hacky. months have different day counts, so our point interval is the average - 30.4
-      return 30.4 * 24 * 3600 * 1000;
-    if (interval == "weeks")
-      return 7 * 24 * 3600 * 1000;
-    if (interval == "days")
-      return 24 * 3600 * 1000;
-    if (interval == "hours")
-      return 3600 * 1000;
-    else
-      return 1;
-  }
-
-  //-----end date reported slider-------
 
   //-----end of custom functions-------
 }

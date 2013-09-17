@@ -10,6 +10,7 @@ Major change log
 ---------------------------
 __9/16/13__
 * Switched to FontAwesome
+* Added new datepicker with predefined date ranges and more informative input for custom date ranges
 
 __9/15/13__
 * [Applied 360 styles](https://github.com/tcu360/tcu-crime-map/commit/289c05db457d3d62facbd63a19a13a31ecaae9db)
@@ -27,6 +28,7 @@ __9/12/13__
 Includes
 ---------------------------	    
 * [Bootstrap](https://github.com/twbs/bootstrap) v3.0.0
+* [Date Range Picker for Twitter Bootstrap](https://github.com/dangrossman/bootstrap-daterangepicker) v2.1.0
 * [FontAwesome](https://github.com/FortAwesome/Font-Awesome/) v3.2.1
 * [jQuery Address](https://github.com/asual/jquery-address) v1.6
 * [jQuery Geocoding and Places Autocomplete Plugin](https://github.com/ubilabs/geocomplete/) v1.4
