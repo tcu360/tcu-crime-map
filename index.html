@@ -49,7 +49,7 @@
           <div class='page-header'>
             <h1>Crime map</h1>
           </div>
-          <p>This map shows incidents reported to TCU Police since January 1, 2012. The information was gathered from <a href="http://www.police.tcu.edu/Criminal%20investigations.htm">online police records</a>. As new information is posted by TCU Police, we'll update our database. Email <a href="mailto:data@tcu360.com">data@tcu360.com</a> with questions about this tool.</p>
+          <p>This map shows incidents reported to TCU Police since January 1, 2012. The information was gathered from <a href="http://www.police.tcu.edu/Criminal%20investigations.htm" target="_blank">online police records</a>. As new information is posted by TCU Police, we'll update our database. Email <a href="mailto:data@tcu360.com">data@tcu360.com</a> with questions about this tool.</p>
           <div class="panel panel-default filter-address">
             <div class="panel-heading">
               <h4>
@@ -90,50 +90,50 @@
               <h4>Incident type</h4>
             </div>
             <div class="panel-body">
-              <div class='checkbox'>
+              <div id="drugsandalcohol" class='checkbox'>
                 <label>
                   <input type='checkbox' />
-                  City drop-off location<span class="badge badge-green pull-right">42</span>
+                  Drugs and alcohol<span class="badge badge-green pull-right">0</span>
                 </label>
               </div>
-              <div class='checkbox'>
+              <div id="propertycrime" class='checkbox'>
                 <label>
                   <input type='checkbox' />
-                  Private business<span class="badge badge-cyan pull-right">42</span>
+                  Property crime<span class="badge badge-blue pull-right">0</span>
                 </label>
               </div>
-              <div class='checkbox'>
+              <div id="sexualassault" class='checkbox'>
                 <label>
                   <input type='checkbox' />
-                  Hazardous materials<span class="badge badge-orange pull-right">42</span>
+                  Sexual assault<span class="badge badge-orange pull-right">0</span>
                 </label>
               </div>
-              <div class='checkbox'>
+              <div id="assault" class='checkbox'>
                 <label>
                   <input type='checkbox' />
-                  Hazardous materials<span class="badge badge-red pull-right">42</span>
+                  Assault<span class="badge badge-cyan pull-right">0</span>
                 </label>
               </div>
-              <div class='checkbox'>
+              <div id="miscellaneous" class='checkbox'>
                 <label>
                   <input type='checkbox' />
-                  Hazardous materials<span class="badge badge-blue pull-right">42</span>
+                  Miscellaneous<span class="badge badge-brown pull-right">0</span>
                 </label>
               </div>
-              <div class='checkbox'>
+              <div id="fireincident" class='checkbox'>
                 <label>
                   <input type='checkbox' />
-                  Hazardous materials<span class="badge badge-brown pull-right">42</span>
+                  Fire incident<span class="badge badge-red pull-right">0</span>
                 </label>
               </div>
               <hr />
               <label class='checkbox-inline'>
                 <strong>Total</strong>
               </label>
-              <span id="result_count" class="badge pull-right">42</span>
+              <span id="result_count" class="badge pull-right">0</span>
             </div>
           </div><!-- /.panel /.panel-default /.filter-incident-type -->
-          <a href="http://www.tcu360.com/reportanerror" class="btn btn-default btn-block reportanerror">
+          <a href="http://www.tcu360.com/reportanerror" class="btn btn-sm btn-default btn-block reportanerror">
             <img src="img/reporterror_sm.png" />Report an error
           </a>
         </div>
@@ -143,10 +143,10 @@
             <table class='table table-responsive table-hover sortable'>
               <thead>
                 <tr>
-                  <th>Type of crime</th>
-                  <th>Type of offense</th>
-                  <th>Date reported</th>
-                  <th>Time</th>
+                  <th>Date<br />reported</th>
+                  <th class="color-coded"></th>
+                  <th>Offense</th>
+                  <th>Location</th>
                 </tr>
               </thead>
               <tbody id='results_list'>

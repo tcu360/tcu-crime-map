@@ -765,7 +765,7 @@ textarea.input-group-sm>.form-control,textarea.input-group-sm>.input-group-addon
 .badge.badge-orange{background-color:#f0ad4e}
 .badge.badge-red{background-color:#d9534f}
 .badge.badge-brown{background-color:#a57d00}
-.badge:empty{display:none}
+.badge:empty{display:none !important}
 label .badge{margin-left:8px}
 a.badge:hover,a.badge:focus{color:#fff;text-decoration:none;cursor:pointer}
 .btn .badge{position:relative;top:-1px}

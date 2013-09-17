@@ -21,7 +21,7 @@ var MapsLib = {
 
   //the encrypted Table ID of your Fusion Table (found under File => About)
   //NOTE: numeric IDs will be depricated soon
-  fusionTableId:      "15Blyfz9cTEZqXV77azB_gs17GRoO3cOJgWK_2Hw",
+  fusionTableId:      "1Iim-T38PxgHCXVkB27hUNmh_8G58aZmxBDrBO9A",
 
   //*New Fusion Tables Requirement* API key. found at https://code.google.com/apis/console/
   //*Important* this key is for demonstration purposes. please register your own.
@@ -44,11 +44,23 @@ var MapsLib = {
   markers: [],
 
   mappings: {
-    latitude: 9,
-    longitude: 10,
-    crimeType: 0,
-    offenseType: 1,
-    dateReported: 2
+    latitude: 6,
+    longitude: 7,
+    type: 0,
+    offense: 1,
+    dateReported: 2,
+    location: 3,
+    status: 4,
+    comments: 5
+  },
+
+  typeCounts: {
+    drugsandalcohol: 0,
+    propertycrime: 0,
+    sexualassault: 0,
+    assault: 0,
+    miscellaneous: 0,
+    fireincident: 0
   },
 
   // initial start and end date
@@ -173,17 +185,15 @@ var MapsLib = {
 
     //-----incident type checkboxes-----
 
-    /*
-
-    var type_column = "'type'";
+    var type_column = "'Type of Crime'";
     var tempWhereClause = [];
-    if ( $("#cbType1").is(':checked')) tempWhereClause.push("Healthcare");
-    if ( $("#cbType2").is(':checked')) tempWhereClause.push("Property");
-    if ( $("#cbType3").is(':checked')) tempWhereClause.push("Public");
-    if ( $("#cbType4").is(':checked')) tempWhereClause.push("Other");
+    if ( $("#drugsandalcohol input").is(':checked')) tempWhereClause.push("Drugs and Alcohol");
+    if ( $("#propertycrime input").is(':checked')) tempWhereClause.push("Property Crime");
+    if ( $("#sexualassault input").is(':checked')) tempWhereClause.push("Sexual Assault");
+    if ( $("#assault input").is(':checked')) tempWhereClause.push("Assault");
+    if ( $("#miscellaneous input").is(':checked')) tempWhereClause.push("Miscellaneous");
+    if ( $("#fireincident input").is(':checked')) tempWhereClause.push("Fire Incident");
     whereClause += " AND " + type_column + " IN ('" + tempWhereClause.join("','") + "')";
-
-    */
 
     //-----end incicident type checkboxes-----
 
@@ -229,6 +239,9 @@ var MapsLib = {
     if (MapsLib.searchrecords != null)
       for (i in MapsLib.markers) {
         MapsLib.markers[i].setMap(null);
+      }
+      for (i in MapsLib.typeCounts) {
+        MapsLib.typeCounts[i] = 0;
       }
       oms.clearMarkers();
       $('#results_list').empty();
@@ -314,7 +327,7 @@ var MapsLib = {
     // count number of incidents per unique location
     locationCount = [];
     for (var i = 0; i < rows.length; i ++) {
-      var locationKey = rows[i][9].toString() + rows[i][10].toString();
+      var locationKey = rows[i][MapsLib.mappings.latitude].toString() + rows[i][MapsLib.mappings.longitude].toString();
       if(locationCount[locationKey]) {
         locationCount[locationKey]++;
       }
@@ -324,30 +337,31 @@ var MapsLib = {
     }
     for (var i = 0; i < rows.length; i ++) {
       var record = rows[i];
-      var loc = new google.maps.LatLng(rows[i][9], rows[i][10]);
+      var loc = new google.maps.LatLng(rows[i][MapsLib.mappings.latitude], rows[i][MapsLib.mappings.longitude]);
       // if multiple crimes per location, use a number icon else an icon for the incident type
-      var iconName = rows[i][MapsLib.mappings.crimeType].replace(/\s+/g, '').toLowerCase();
+      var type = rows[i][MapsLib.mappings.type].replace(/\s+/g, '').toLowerCase();
       var icon = {
         size: new google.maps.Size(46, 64),
         scaledSize: new google.maps.Size(35,48),
         anchor: new google.maps.Point(17,47)
       };
-      var locationKey = rows[i][9].toString() + rows[i][10].toString();
+      var locationKey = rows[i][MapsLib.mappings.latitude].toString() + rows[i][MapsLib.mappings.longitude].toString();
       if(locationCount[locationKey] > 1) {
         icon.url = 'img/pin_' + locationCount[locationKey].toString() + '.png';
       }
       else {
-        icon.url = 'img/pin_' + iconName + '.png';
+        icon.url = 'img/pin_' + type + '.png';
       }
       var marker = new google.maps.Marker({
         position: loc,
-        desc: rows[i][MapsLib.mappings.crimeType],
+        desc: rows[i][MapsLib.mappings.type],
         map: map,
         icon: icon
       });
-      markerIcons[marker.__gm_id] = iconName;
+      markerIcons[marker.__gm_id] = type;
       MapsLib.markers.push(marker);
       oms.addMarker(marker);
+      MapsLib.typeCounts[type]++;
     }
   },
 
@@ -358,10 +372,10 @@ var MapsLib = {
     for (var row in rows) {
       template = "\
         <tr>\
-          <td><strong>" + rows[row][0] + "</strong></td>\
-          <td>" + rows[row][1] + "</td>\
-          <td>" + rows[row][2] + "</td>\
-          <td>" + rows[row][3] + "</td>\
+          <td>" + moment(rows[row][MapsLib.mappings.dateReported]).format('l') + "</td>\
+          <td class='color-coded " + rows[row][MapsLib.mappings.type].replace(/\s+/g, '').toLowerCase() + "'></td>\
+          <td>" + rows[row][MapsLib.mappings.offense] + "<br /><small>" + rows[row][MapsLib.mappings.comments] + "</small></td>\
+          <td>" + rows[row][MapsLib.mappings.location] + "</td>\
         </tr>";
       results.append(template);
     }
@@ -372,7 +386,7 @@ var MapsLib = {
       widthFixed: true,
       headerTemplate : '{content} {icon}', // new in v2.7. Needed to add the bootstrap icon!
       widgets : [ "uitheme" ],
-      sortList: [[2,1]],
+      sortList: [[0,1]],
       widgetOptions : {
         filter_reset : ".reset"
       }
@@ -396,13 +410,16 @@ var MapsLib = {
   },
 
   displaySearchCount: function(numRows) {
-    var name = MapsLib.recordNamePlural;
-    if (numRows == 1)
-    name = MapsLib.recordName;
-    $( "#result_count" ).fadeOut(function() {
-        $( "#result_count" ).text(MapsLib.addCommas(numRows));
-      });
-    $( "#result_count" ).fadeIn();
+    $( ".filter-incident-type .badge" ).fadeOut(function() {
+      $( "#result_count" ).text(numRows);
+      for(var type in MapsLib.typeCounts) {
+        if ($('#' + type + ' input').is(':checked')) {
+          $('#' + type + ' .badge').text(MapsLib.typeCounts[type]);
+        } else {
+          $('#' + type + ' .badge').text('');
+        }
+      }
+    }).fadeIn();
   },
 
   addCommas: function(nStr) {
