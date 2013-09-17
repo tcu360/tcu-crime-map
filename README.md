@@ -9,8 +9,8 @@ Roadmap
 Major change log
 ---------------------------
 __9/16/13__
-* Switched to FontAwesome
-* Added new datepicker with predefined date ranges and more informative input for custom date ranges
+* [Switched to FontAwesome](https://github.com/tcu360/tcu-crime-map/commit/d8c6d3b3745fdf07e1b007179fde42534e31e5e9)
+* [Added new datepicker](https://github.com/tcu360/tcu-crime-map/commit/8a55e72daf19bb32da64b405b1ca17dcc0291f65) with predefined date ranges and more informative input for custom date ranges
 
 __9/15/13__
 * [Applied 360 styles](https://github.com/tcu360/tcu-crime-map/commit/289c05db457d3d62facbd63a19a13a31ecaae9db)
