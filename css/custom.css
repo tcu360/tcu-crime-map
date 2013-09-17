@@ -60,6 +60,10 @@ table.sortable th:hover .tablesorter-icon.icon-sort{
 	margin-top: 6px;
 	margin-bottom: 6px;
 }
+.reportanerror img{
+	margin-right: 7px;
+	margin-top: -3px;
+}
 
 /*
  * Footer
