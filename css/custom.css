@@ -41,7 +41,7 @@ img { max-width: none; }
   margin-top: 25px;
 }
 table.sortable td{
-  min-width: 75px;
+  min-width: 110px;
 }
 table.sortable th{
   cursor: pointer;
@@ -51,6 +51,35 @@ table.sortable th{
 }
 table.sortable th:hover .tablesorter-icon.icon-sort{
   opacity: .5; 
+}
+
+/*
+ * Data table color bars
+ */
+#results table.sortable .color-coded{
+	max-width: 3px;
+	padding: 0;
+}
+#results table.sortable .color-coded .tablesorter-wrapper{
+	display: none;
+}
+td.drugsandalcohol{
+	background-color: #5cb85c !important;
+}
+td.propertycrime{
+	background-color: #428bca !important;
+}
+td.sexualassault{
+	background-color: #f0ad4e !important;
+}
+td.assault{
+	background-color: #5bc0de !important;
+}
+td.miscellaneous{
+	background-color: #a57d00 !important;
+}
+td.fireincident{
+	background-color: #d9534f !important;
 }
 
 /*
