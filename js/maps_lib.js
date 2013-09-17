@@ -104,7 +104,7 @@ var MapsLib = {
 
     MapsLib.searchrecords = null;
 
-    // setup the tablesorter plugin ... should probably move this to .initialize()
+    // setup the tablesorter plugin
     $.extend($.tablesorter.themes.bootstrap, {
       table      : 'table',
       icons      : 'icon pull-right',
@@ -153,6 +153,8 @@ var MapsLib = {
   doSearch: function(location, radius) {
     MapsLib.clearSearch();
     var address = $("#search_address").val();
+
+    $('#empty-msg').hide();
 
     if(radius) {
       MapsLib.searchRadius = radius;
@@ -229,6 +231,7 @@ var MapsLib = {
         MapsLib.markers[i].setMap(null);
       }
       oms.clearMarkers();
+      $('#results_list').empty();
     if (MapsLib.addrMarker != null)
       MapsLib.addrMarker.setMap(null);
     if (MapsLib.searchRadiusCircle != null)
@@ -300,6 +303,8 @@ var MapsLib = {
           MapsLib.displaySearchCount(MapsLib.searchrecords.length);
         } else {
           MapsLib.displaySearchCount(0);
+          $('#results').hide();
+          $('#empty-msg').show();
         }
       }
     });
@@ -348,25 +353,17 @@ var MapsLib = {
 
   displayList: function(rows) {
     var template = "";
-
     var results = $("#results_list");
-    results.hide().empty(); //hide the existing list and empty it out first
 
-    if (rows == null) {
-      //clear results list
-      results.fadeOut();
-    }
-    else {
-      for (var row in rows) {
-        template = "\
-          <tr>\
-            <td><strong>" + rows[row][0] + "</strong></td>\
-            <td>" + rows[row][1] + "</td>\
-            <td>" + rows[row][2] + "</td>\
-            <td>" + rows[row][3] + "</td>\
-          </tr>";
-        results.append(template);
-      }
+    for (var row in rows) {
+      template = "\
+        <tr>\
+          <td><strong>" + rows[row][0] + "</strong></td>\
+          <td>" + rows[row][1] + "</td>\
+          <td>" + rows[row][2] + "</td>\
+          <td>" + rows[row][3] + "</td>\
+        </tr>";
+      results.append(template);
     }
 
     // call the tablesorter plugin and apply the uitheme widget
@@ -382,8 +379,8 @@ var MapsLib = {
     });
     $('table').trigger('update');
 
-    results.show();
-    $('table').fadeIn();
+    if($('#results').css('display') === 'none')
+      $('#results').fadeIn();
   },
 
   handleError: function(json) {

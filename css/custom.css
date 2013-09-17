@@ -14,11 +14,31 @@
 img { max-width: none; }
 
 /*
+ * Handling for empty/loading results
+ */
+#empty-msg{
+	display: none;
+}
+#empty-msg .col-xs-8 h3{
+	padding-right: 35%;
+}
+#empty-msg i{
+	font-size: 2.25em;
+}
+#empty-msg div{
+	padding-bottom: 40px;
+}
+@media (min-width: 768px) {
+	#empty-msg div{
+		padding-top: 125px;
+	}
+}
+
+/*
  * Data table
  */
-table.sortable{
+#results table{
   margin-top: 25px;
-  display:none;
 }
 table.sortable td{
   min-width: 75px;
