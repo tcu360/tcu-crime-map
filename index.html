@@ -49,8 +49,8 @@
           <div class='page-header'>
             <h1>Crime map</h1>
           </div>
-          <p>This is a demo of <a href='http://derekeder.com'>Derek Eder's</a> <a href='http://derekeder.com/searchable_map_template/'>Searchable Map Template</a> using Google <a href='http://support.google.com/fusiontables/answer/2571232?hl=en&ref_topic=1652595'>Fusion Tables</a>. Use this section to give a little context your map. Maybe a link to <a href='#'>read more &raquo;</a></p>
-          <div class="panel panel-default">
+          <p>This map shows incidents reported to TCU Police since January 1, 2012. The information was gathered from <a href="http://www.police.tcu.edu/Criminal%20investigations.htm">online police records</a>. As new information is posted, we'll update our database. Email <a href="mailto:data@tcu360.com">data@tcu360.com</a> with questions about this database.</p>
+          <div class="panel panel-default filter-address">
             <div class="panel-heading">
               <h4>
               Address
@@ -126,7 +126,12 @@
               </label>
               <span id="result_count" class="badge pull-right">42</span>
             </div>
-          </div>
+          </div><!-- /.panel /.panel-default /.filter-incident-type -->
+          <a href="http://www.tcu360.com/reportanerror">
+            <button type="button" class="btn btn-default btn-block reportanerror">
+              <img src="img/reporterror_sm.png" />Report an error
+            </button>
+          </a>
         </div>
         <div class='col-sm-7 col-md-8 col-lg-9'>
           <div id='results'>

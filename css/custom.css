@@ -56,9 +56,19 @@ table.sortable th:hover .tablesorter-icon.icon-sort{
 /*
  * Filters
  */
+.filter-address{
+	margin-top: 25px;
+}
 .filter-incident-type hr{
 	margin-top: 6px;
 	margin-bottom: 6px;
+}
+
+/*
+ * Report an error button
+ */
+.reportanerror{
+	margin-bottom: 25px;
 }
 .reportanerror img{
 	margin-right: 7px;
