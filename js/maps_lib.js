@@ -37,7 +37,6 @@ var MapsLib = {
   
   searchRadius:       805,            //in meters ~ 1/2 mile
   defaultZoom:        15,             //zoom level when map is loaded (bigger is more zoomed in)
-  addrMarkerImage: 'http://derekeder.com/images/icons/blue-pushpin.png',
   currentPinpoint: null,
 
   // array to hold map markers
@@ -224,7 +223,7 @@ var MapsLib = {
           MapsLib.addrMarker = new google.maps.Marker({
             position: MapsLib.currentPinpoint,
             map: map,
-            icon: MapsLib.addrMarkerImage,
+            icon: 'img/pin_home.png',
             animation: google.maps.Animation.DROP,
             title:address
           });
