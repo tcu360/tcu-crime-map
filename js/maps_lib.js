@@ -361,9 +361,14 @@ var MapsLib = {
       else {
         icon.url = 'img/pin_' + type + '.png';
       }
+      var desc = "\
+        <strong>" + rows[i][MapsLib.mappings.offense] + "</strong><br />\
+        " + rows[i][MapsLib.mappings.location] + "<br />\
+        Status: " + rows[i][MapsLib.mappings.status] + "<br />\
+        Reported: " + rows[i][MapsLib.mappings.dateReported];
       var marker = new google.maps.Marker({
         position: loc,
-        desc: rows[i][MapsLib.mappings.type],
+        desc: desc,
         map: map,
         icon: icon
       });
@@ -385,7 +390,7 @@ var MapsLib = {
           <td class='color-coded " + rows[row][MapsLib.mappings.type].replace(/\s+/g, '').toLowerCase() + "'></td>\
           <td>" + rows[row][MapsLib.mappings.offense] + "<br /><small>" + rows[row][MapsLib.mappings.comments] + "</small></td>\
           <td>" + rows[row][MapsLib.mappings.location] + "</td>\
-          <td>" + rows[row][MapsLib.mappings.status] + "</td>\
+          <td class='hidden-xs'>" + rows[row][MapsLib.mappings.status] + "</td>\
         </tr>";
       results.append(template);
     }
