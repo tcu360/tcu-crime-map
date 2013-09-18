@@ -35,6 +35,25 @@ img { max-width: none; }
 }
 
 /*
+ * Share bar
+ */
+.page-header .share-bar{
+	border-top: 1px solid #ddd;
+	margin-top: 30px;
+	border-bottom: 1px solid #ddd;
+	margin-bottom: -11px;
+	height: 35px;
+	padding: 6px 0;
+}
+.page-header .share-bar span{
+	position: relative;
+	top: -1px;
+}
+.page-header .share-bar i{
+	margin-right: 8px;
+}
+
+/*
  * Data table
  */
 #results table{

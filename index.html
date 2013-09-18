@@ -14,6 +14,16 @@
     <!--[if lt IE 9]>
       <script type="text/javascript" src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+    <meta property="twitter:account_id" content="281715255"/>
+    <meta property="og:title" content="TCU Crime Database"/>
+    <meta property="og:site_name" content="TCU 360"/>
+    <meta property="og:locale" content="en_US"/>
+    <meta property="fb:app_id" content="139159392823767"/>
+    <meta property="og:description" content="This map shows incidents reported to TCU Police since January 1, 2012. The information was gathered from online police records."/>
+    <meta property="og:url" content="http://crime.tcu360.com/"/>
+    <meta property="og:image" content="https://www.tcu360.com/sites/default/files/imagecache/bigthumb/media/2013/nid18502/fid13299.jpg"/>
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:site" content="@tcu360"/>
   </head>
   <body>
     <header class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -48,6 +58,12 @@
         <div class='col-sm-5 col-md-4 col-lg-3'>
           <div class='page-header'>
             <h1>Crime map</h1>
+            <div class="share-bar">
+              <i class="icon-share-alt"></i>
+              <span class='st_facebook' displayText="Facebook"></span>
+              <span class='st_twitter' displayText="Twitter"></span>
+              <span class='st_googleplus' displayText="Google+"></span>
+            </div>
           </div>
           <p>This map shows incidents reported to TCU Police since January 1, 2012. The information was gathered from <a href="http://www.police.tcu.edu/Criminal%20investigations.htm" target="_blank">online police records</a>. As new information is posted by TCU Police, we'll update our database. Email <a href="mailto:data@tcu360.com">data@tcu360.com</a> with questions about this tool.</p>
           <div class="panel panel-default filter-address">
@@ -182,6 +198,8 @@
     <script src="js/oms.min.js"></script>
     <script src="js/jquery.geocomplete.min.js"></script>
     <script src="js/maps_lib.min.js"></script>
+    <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+    <script type="text/javascript">stLight.options({publisher: "8793fb26-5fc2-4842-bbca-9af26f3201b4", doNotHash: true, doNotCopy: true, hashAddressBar: false});</script>
     <script>
         $(window).resize(function () {
           var width = $('#map_canvas').width();
