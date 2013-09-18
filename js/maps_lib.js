@@ -84,6 +84,15 @@ var MapsLib = {
       keepSpiderfied: true
     }
     oms = new OverlappingMarkerSpiderfier(map, omsOptions);
+    var mti = google.maps.MapTypeId;
+    oms.legColors.usual[mti.HYBRID],
+      oms.legColors.usual[mti.SATELLITE],
+      oms.legColors.usual[mti.TERRAIN],
+      oms.legColors.usual[mti.ROADMAP],
+      oms.legColors.highlighted[mti.SATELLITE],
+      oms.legColors.highlighted[mti.HYBRID],
+      oms.legColors.highlighted[mti.TERRAIN],
+      oms.legColors.highlighted[mti.ROADMAP] = '#333';
 
     // event listener to generate info window
     var iw = new google.maps.InfoWindow();
@@ -376,6 +385,7 @@ var MapsLib = {
           <td class='color-coded " + rows[row][MapsLib.mappings.type].replace(/\s+/g, '').toLowerCase() + "'></td>\
           <td>" + rows[row][MapsLib.mappings.offense] + "<br /><small>" + rows[row][MapsLib.mappings.comments] + "</small></td>\
           <td>" + rows[row][MapsLib.mappings.location] + "</td>\
+          <td>" + rows[row][MapsLib.mappings.status] + "</td>\
         </tr>";
       results.append(template);
     }
