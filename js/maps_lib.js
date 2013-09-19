@@ -141,7 +141,7 @@ var MapsLib = {
          'Last 30 Days': [moment().subtract('days', 29), moment()],
          'This Month': [moment().startOf('month'), moment().endOf('month')],
          'Last Month': [moment().subtract('month', 1).startOf('month'), moment().subtract('month', 1).endOf('month')],
-         'All Available Dates': [moment('2012-01-01'), moment()]
+         'All Available Dates': [moment('2013-01-01'), moment()]
         },
         startDate: MapsLib.startDate,
         endDate: MapsLib.endDate,
