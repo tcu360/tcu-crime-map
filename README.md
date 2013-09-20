@@ -3,9 +3,6 @@ This is the repo for the [TCU 360 crime map](http://crime.tcu360.com/). It's bas
 
 Major change log
 ---------------------------
-__9/20/13__
-* All includes now using `https`, production using `https` using Cloudflare
-
 __9/19/13__
 * First push to production
 
