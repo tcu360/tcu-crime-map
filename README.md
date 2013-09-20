@@ -3,6 +3,12 @@ This is the repo for the [TCU 360 crime map](http://crime.tcu360.com/). It's bas
 
 Major change log
 ---------------------------
+__9/20/13__
+* All includes now using `https`, production using `https` using Cloudflare
+
+__9/19/13__
+* First push to production
+
 __9/16/13__
 * [Switched to FontAwesome](https://github.com/tcu360/tcu-crime-map/commit/d8c6d3b3745fdf07e1b007179fde42534e31e5e9)
 * [Added new datepicker](https://github.com/tcu360/tcu-crime-map/commit/8a55e72daf19bb32da64b405b1ca17dcc0291f65) with predefined date ranges and more informative input for custom date ranges
