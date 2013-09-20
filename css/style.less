@@ -1,3 +1,10 @@
+/*
+ * Imports
+ */
+@import '../bootstrap/css/less/bootstrap.less';
+@import 'daterangepicker.css';
+@import 'https://fonts.googleapis.com/css?family=Lato:400,400italic,700,900';
+
 /* Fix Google Maps canvas
  *
  * Wrap your Google Maps embed in a `.google-map-canvas` to reset Bootstrap's
@@ -18,15 +25,15 @@ img { max-width: none; }
  */
 #empty-msg{
 	display: none;
-}
-#empty-msg .col-xs-8 h3{
-	padding-right: 35%;
-}
-#empty-msg i{
-	font-size: 2.25em;
-}
-#empty-msg div{
-	padding-bottom: 40px;
+	.col-xs-8 h3{
+		padding-right: 35%;
+	}
+	i{
+		font-size: 2.25em;	
+	}
+	div{
+		padding-bottom: 40px;	
+	}
 }
 @media (min-width: 768px) {
 	#empty-msg div{
@@ -38,38 +45,38 @@ img { max-width: none; }
  * Share bar
  */
 .page-header .share-bar{
-	border-top: 1px solid #ddd;
+	border-top: 1px solid @panel-default-border;
 	margin-top: 30px;
-	border-bottom: 1px solid #ddd;
+	border-bottom: 1px solid @panel-default-border;
 	margin-bottom: -11px;
 	height: 35px;
 	padding: 6px 0;
-}
-.page-header .share-bar span{
-	position: relative;
-	top: -1px;
-}
-.page-header .share-bar i{
-	margin-right: 8px;
+	span{
+		position: relative;
+		top: -1px;	
+	}
+	i{
+		margin-right: 8px;	
+	}
 }
 
 /*
  * Data table
  */
 #results table{
-  margin-top: 25px;
-}
-table.sortable td{
-  min-width: 110px;
-}
-table.sortable th{
-  cursor: pointer;
-}
-.tablesorter-icon.icon-sort{
-  opacity: .3;
-}
-table.sortable th:hover .tablesorter-icon.icon-sort{
-  opacity: .5; 
+	margin-top: 25px;
+	&.sortable td{
+		min-width: 110px;	
+	}
+	&.sortable th{
+		cursor: pointer;
+		&:hover .tablesorter-icon.icon-sort{
+			opacity: .5;		
+		}
+	}
+	.tablesorter-icon.icon-sort{
+		opacity: .3;
+	}
 }
 
 /*
@@ -78,27 +85,27 @@ table.sortable th:hover .tablesorter-icon.icon-sort{
 #results table.sortable .color-coded{
 	max-width: 3px;
 	padding: 0;
-}
-#results table.sortable .color-coded .tablesorter-wrapper{
-	display: none;
-}
-td.drugsandalcohol{
-	background-color: #5cb85c !important;
-}
-td.propertycrime{
-	background-color: #428bca !important;
-}
-td.sexualassault{
-	background-color: #f0ad4e !important;
-}
-td.assault{
-	background-color: #5bc0de !important;
-}
-td.miscellaneous{
-	background-color: #a57d00 !important;
-}
-td.fireincident{
-	background-color: #d9534f !important;
+	.tablesorter-wrapper{
+		display: none;	
+	}
+	&.drugsandalcohol{
+		background-color: @brand-green !important;
+	}
+	&.propertycrime{
+		background-color: @brand-blue !important;
+	}
+	&.sexualassault{
+		background-color: @brand-orange !important;
+	}
+	&.assault{
+		background-color: @brand-cyan !important;
+	}
+	&.miscellaneous{
+		background-color: @brand-brown !important;
+	}
+	&.fireincident{
+		background-color: @brand-red !important;
+	}
 }
 
 /*
@@ -117,10 +124,10 @@ td.fireincident{
  */
 .reportanerror{
 	margin-bottom: 25px;
-}
-.reportanerror img{
-	margin-right: 7px;
-	margin-top: -3px;
+	img {
+		margin-right: 7px;
+		margin-top: -3px;	
+	}
 }
 
 /*
@@ -128,7 +135,7 @@ td.fireincident{
  */
 footer p {
 	margin: 45px 0 20px 0;
-}
-footer p a{
-	color: #333;
+	a{
+		color: @gray-dark;
+	}
 }
