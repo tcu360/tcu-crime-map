@@ -63,7 +63,7 @@ var MapsLib = {
   },
 
   // initial start and end date
-  startDate: moment().subtract('days', 29),
+  startDate: moment().subtract('days', 90),
   endDate: moment(),
 
   initialize: function() {
