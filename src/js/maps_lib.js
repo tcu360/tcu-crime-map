@@ -21,7 +21,7 @@ var MapsLib = {
 
   //the encrypted Table ID of your Fusion Table (found under File => About)
   //NOTE: numeric IDs will be depricated soon
-  fusionTableId:      "1Iim-T38PxgHCXVkB27hUNmh_8G58aZmxBDrBO9A",
+  fusionTableId:      "1G1lsCuFFDB417PVc8zUsTWVR6Wv_vX3_kIQjuTy6",
 
   //*New Fusion Tables Requirement* API key. found at https://code.google.com/apis/console/
   //*Important* this key is for demonstration purposes. please register your own.
@@ -34,7 +34,7 @@ var MapsLib = {
 
   map_centroid:       new google.maps.LatLng(32.708, -97.363029), //center that your map defaults to
   locationScope:      "fort worth",      //geographical area appended to all address searches
-  
+
   searchRadius:       805,            //in meters ~ 1/2 mile
   defaultZoom:        15,             //zoom level when map is loaded (bigger is more zoomed in)
   currentPinpoint: null,
@@ -47,10 +47,10 @@ var MapsLib = {
     longitude: 7,
     type: 0,
     offense: 1,
-    dateReported: 2,
-    location: 3,
-    status: 4,
-    comments: 5
+    dateReported: 3,
+    location: 4,
+    status: 5,
+    comments: 2
   },
 
   typeCounts: {
@@ -161,9 +161,9 @@ var MapsLib = {
     $("#search_address").val(MapsLib.convertToPlainString($.address.parameter('address')));
     $(":checkbox").attr("checked", "checked");
     $("#result_count").hide();
-    
+
     //-----custom initializers-------
-    
+
     //-----end of custom initializers-------
 
     //run the default search
@@ -458,7 +458,7 @@ var MapsLib = {
     if (text == undefined) return '';
   	return decodeURIComponent(text);
   },
-  
+
   //-----custom functions-------
   // NOTE: if you add custom functions, make sure to append each one with a comma, except for the last one.
   // This also applies to the convertToPlainString function above
